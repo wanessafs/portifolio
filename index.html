@@ -8,32 +8,41 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#FAFAFF;--surface:#fff;--ink:#15133A;--muted:#5B5A7A;--line:#DAD7F0;--accent:#3A33F5;--on-accent:#fff;
---d:'Bricolage Grotesque','Arial Black',Arial,sans-serif;--b:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#100F26;--surface:#1A1840;--ink:#F1F0FF;--muted:#A9A7CC;--line:#2E2C5C;--accent:#8C87FF;--on-accent:#100F26}}
+:root{
+  --bg:#FAFAFF;--surface:#fff;--ink:#15133A;--muted:#5B5A7A;--line:#DAD7F0;--accent:#3A33F5;--on-accent:#fff;
+  --d:'Bricolage Grotesque','Arial Black',Arial,sans-serif;--b:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#100F26;--surface:#1A1840;--ink:#F1F0FF;--muted:#A9A7CC;--line:#2E2C5C;--accent:#8C87FF;--on-accent:#100F26}
+}
 :root[data-theme="dark"]{--bg:#100F26;--surface:#1A1840;--ink:#F1F0FF;--muted:#A9A7CC;--line:#2E2C5C;--accent:#8C87FF;--on-accent:#100F26}
 html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--b)}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+/* Mobile por padrão */
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
 header.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0;gap:16px;flex-wrap:wrap}
 .logo{font:800 1.25rem var(--d);text-decoration:none}
 nav{display:flex;gap:20px}
 nav a{text-decoration:none;color:var(--muted);font-weight:600}
 nav a:hover{color:var(--ink)}
+
+/* Hero mobile */
 .hero{display:grid;gap:32px;padding:24px 0 64px;align-items:center}
-@media(min-width:800px){.hero{grid-template-columns:1.1fr .9fr;gap:56px}}
 h1{font:800 clamp(2.4rem,7vw,4.4rem)/1.02 var(--d);letter-spacing:-.025em;margin:0 0 20px}
 .lead{color:var(--muted);font-size:1.1rem;max-width:44ch;margin:0 0 28px}
 .btns{display:flex;gap:12px;flex-wrap:wrap}
-.btn{display:inline-block;padding:13px 22px;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid var(--accent)}
+.btn{display:inline-block;padding:13px 22px;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid var(--accent);transition:all .2s ease}
 .btn.p{background:var(--accent);color:var(--on-accent)}
-.btn.s{color:var(--ink);border-color:var(--line)}
+.btn.s{color:var(--ink);border-color:var(--line);background:transparent}
 .btn.s:hover{border-color:var(--ink)}
-/* carousel */
+.btn:hover{transform:translateY(-2px)}
+
+/* Carrossel mobile original */
 .car{position:relative}
 .track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
 .track::-webkit-scrollbar{display:none}
@@ -41,27 +50,27 @@ h1{font:800 clamp(2.4rem,7vw,4.4rem)/1.02 var(--d);letter-spacing:-.025em;margin
 .slide b{font:800 clamp(1.5rem,5vw,2.1rem)/1.05 var(--d);letter-spacing:-.02em;max-width:11ch}
 .slide small{font-weight:600;opacity:.75}
 .track .hs{flex:0 0 78%;width:78%;aspect-ratio:4/5;height:auto;object-fit:cover;scroll-snap-align:center;border-radius:18px;display:block}
-.cnt{margin-top:12px;color:var(--muted);font-weight:600;font-size:.9rem;display:flex;justify-content:space-between}
-.c1{background:#3A33F5;color:#fff}.c2{background:#FFC9B5;color:#15133A}.c3{background:#E6E1FF;color:#15133A}
-.c4{background:#15133A;color:#fff}.c5{background:#FFE55C;color:#15133A}
-/* work */
+.cnt{margin-top:12px;color:var(--muted);font-weight:600;font-size:.9rem;display:flex;justify-content:space-between;align-items:center}
+.car-nav-btns{display:none}
+
+/* Seções e trabalhos */
 section{padding:56px 0;border-top:1px solid var(--line)}
 h2{font:800 clamp(1.8rem,5vw,2.6rem)/1.1 var(--d);letter-spacing:-.02em;margin:0 0 24px}
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
-.filters button{font:600 .95rem var(--b);padding:9px 16px;border-radius:999px;border:2px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.filters button{font:600 .95rem var(--b);padding:9px 16px;border-radius:999px;border:2px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;transition:all .2s ease}
 .filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;align-items:start}
-@media(min-width:800px){.grid{grid-template-columns:repeat(3,1fr);gap:24px}}
 .item[hidden]{display:none}
 .grid.m{display:flex;gap:18px;align-items:flex-start}
 .col{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:18px}
-@media(min-width:800px){.grid.m,.col{gap:24px}}
 .art{border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;font:800 clamp(1.1rem,3.4vw,1.6rem)/1.05 var(--d);letter-spacing:-.02em}
 .art.car4{aspect-ratio:4/5}.art.sto{aspect-ratio:9/16}.art.imp{aspect-ratio:7/5}
-.shot{display:block;width:100%;height:auto;border-radius:14px}
+.shot{display:block;width:100%;height:auto;border-radius:14px;cursor:zoom-in;transition:transform .2s ease,box-shadow .2s ease}
+.item:hover .shot{box-shadow:0 8px 24px rgba(0,0,0,0.08);transform:translateY(-3px)}
 .cap{margin:10px 2px 0;font-weight:600}
 .cap span{display:block;color:var(--muted);font-weight:400;font-size:.9rem}
-/* about & contact */
+
+/* Sobre & contato */
 .about{display:grid;gap:28px;max-width:860px;align-items:center}
 @media(min-width:700px){.about{grid-template-columns:260px 1fr;gap:44px}}
 .about .me{display:block;width:120px;height:120px;aspect-ratio:1/1;object-fit:cover;border-radius:22px;background:#fff;border:1px solid var(--line)}
@@ -70,22 +79,22 @@ h2{font:800 clamp(1.8rem,5vw,2.6rem)/1.1 var(--d);letter-spacing:-.02em;margin:0
 .about p{margin:0;font-size:1.1rem}
 .skills{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:8px 0 0;list-style:none}
 .skills li{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.95rem}
-.mail{font:800 clamp(1.4rem,5vw,2.4rem)/1.1 var(--d);color:var(--accent);word-break:break-all}
+.mail{font:800 clamp(1.4rem,5vw,2.4rem)/1.1 var(--d);color:var(--accent);word-break:break-all;text-decoration:none}
+.mail:hover{text-decoration:underline}
 footer{padding:32px 0 40px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
-.item .art,.item .shot{cursor:zoom-in}
+
+/* Lightbox Modal */
 html:has(dialog[open]){overflow:hidden}
-dialog.lb{border:0;padding:0;margin:auto;border-radius:18px;background:var(--surface);color:var(--ink);width:min(940px,calc(100% - 24px));max-height:calc(100dvh - 24px)}
+dialog.lb{border:0;padding:0;margin:auto;border-radius:18px;background:var(--surface);color:var(--ink);width:min(1080px,calc(100% - 24px));max-height:calc(100dvh - 24px);box-shadow:0 24px 60px rgba(0,0,0,.25)}
 dialog.lb[open]{display:flex;flex-direction:column}
-dialog.lb::backdrop{background:rgba(10,9,30,.75)}
-.lb-bar{display:flex;justify-content:flex-end;padding:12px 12px 0}
+dialog.lb::backdrop{background:rgba(10,9,30,.75);backdrop-filter:blur(3px)}
+.lb-bar{display:flex;justify-content:flex-end;padding:12px 16px 0}
 .lb-x{font:600 .95rem var(--b);padding:8px 16px;border:2px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer}
 .lb-x:hover{border-color:var(--ink)}
 .lb-in{display:grid;gap:20px;padding:12px 20px 24px;overflow:auto}
-@media(min-width:800px){.lb-in{grid-template-columns:1fr 1fr;gap:32px;padding:12px 28px 28px;align-items:start}}
+@media(min-width:800px){.lb-in{grid-template-columns:1.1fr .9fr;gap:36px;padding:16px 28px 28px;align-items:start}}
 .lb-media{min-width:0}
 .lb-media .shot{max-height:72vh;width:auto;max-width:100%;margin:0 auto}
-.lb-media .art{width:100%}
-.lb-media .art.sto{max-width:300px;margin:0 auto}
 .lb-car{min-width:0}
 .lb-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:14px}
 .lb-track::-webkit-scrollbar{display:none}
@@ -95,6 +104,82 @@ dialog.lb::backdrop{background:rgba(10,9,30,.75)}
 .lb h3{font:800 1.6rem/1.1 var(--d);letter-spacing:-.02em;margin:0 0 6px}
 .lb-kind{color:var(--muted);margin:0 0 16px;font-weight:600}
 .lb-desc{margin:0;white-space:pre-line}
+
+/* =========================================================
+   ADAPTAÇÃO ESPECÍFICA PARA TELAS DESKTOP (>= 900px)
+   ========================================================= */
+@media (min-width: 900px) {
+  /* Alarga suavemente o conteúdo preenchendo a tela widescreen */
+  .wrap{
+    max-width: min(1360px, 92vw);
+    padding: 0 32px;
+  }
+  
+  header.top{
+    padding: 24px 0;
+  }
+  
+  /* Mantém a dobra hero harmoniosa e contida verticalmente */
+  .hero{
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+    padding: 40px 0 60px;
+    min-height: calc(82vh - 80px);
+    align-content: center;
+  }
+  
+  .lead{
+    max-width: 50ch;
+  }
+
+  /* Imagem do destaque fica proporcional à janela, não desmedida */
+  .car{
+    max-width: 440px;
+    justify-self: end;
+    width: 100%;
+  }
+
+  .track{
+    scroll-behavior: smooth;
+  }
+
+  .track .hs{
+    flex: 0 0 100%;
+    width: 100%;
+    max-height: 520px;
+    height: auto;
+  }
+
+  /* Exibe controles de navegação suaves no desktop */
+  .car-nav-btns{
+    display: inline-flex;
+    gap: 6px;
+  }
+  .car-btn{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--ink);
+    font-size: 0.85rem;
+    transition: all .2s;
+  }
+  .car-btn:hover{
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Grade aproveitando a largura total */
+  .grid.m, .col{
+    gap: 24px;
+  }
+}
+
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
@@ -113,8 +198,21 @@ dialog.lb::backdrop{background:rgba(10,9,30,.75)}
     <div class="btns"><a class="btn p" href="#trabalhos">Ver trabalhos</a><a class="btn s" href="#contato">Pedir orçamento</a></div>
   </div>
   <div class="car" aria-label="Destaques">
-    <div class="track" id="track"><img class="hs" src="destaque-01.webp" alt="Panfleto do jogo O Chamado de Anhangá sobre uma mesa, com o logo, o aviso Em breve, as lojas Google Play e Steam, um QR code do @anhanga.jogo e as marcas dos realizadores" width="720" height="864"><img class="hs" src="voce-perdeu-cursos-do-senar-mt-01.webp" alt="Capa do carrossel: dois técnicos plantando mudas de banana, com o texto Se você responder o mesmo que eu, você perdeu, e a faixa Versão cursos do SENAR-MT" width="720" height="900"><img class="hs" src="posts-do-anhanga-jogo-04.webp" alt="Post Cursos de libras gratuitos que você precisa conhecer, com uma pasta de arquivo sobre fundo laranja, faixa de ícones do padrão gráfico, o logo O Chamado de Anhangá e as marcas dos realizadores" width="720" height="900" loading="lazy"><img class="hs" src="mato-grosso-se-sente-06.webp" alt="Encerramento: vista aérea de lavouras ao amanhecer, com o texto Esse é o Mato Grosso que a gente sente orgulho de representar, e as marcas do Sistema Famato" width="720" height="900" loading="lazy"><img class="hs" src="parabens-mato-grosso-01.webp" alt="Card Parabéns, Mato Grosso por seus 277 anos, 9 de maio: colagem de fotos com a cidade de Cuiabá, araras-azuis, mangas, algodão, uma canoa e áreas alagadas dentro do contorno do estado, e o logo da Fundação Uniselva na base" width="859" height="1073" loading="lazy"></div>
-    <div class="cnt"><span>Arraste para o lado</span><span id="count">1 / 5</span></div>
+    <div class="track" id="track">
+      <img class="hs" src="destaque-01.webp" alt="Panfleto do jogo O Chamado de Anhangá sobre uma mesa, com o logo, o aviso Em breve, as lojas Google Play e Steam, um QR code do @anhanga.jogo e as marcas dos realizadores" width="720" height="864">
+      <img class="hs" src="voce-perdeu-cursos-do-senar-mt-01.webp" alt="Capa do carrossel: dois técnicos plantando mudas de banana, com o texto Se você responder o mesmo que eu, você perdeu, e a faixa Versão cursos do SENAR-MT" width="720" height="900">
+      <img class="hs" src="posts-do-anhanga-jogo-04.webp" alt="Post Cursos de libras gratuitos que você precisa conhecer, com uma pasta de arquivo sobre fundo laranja, faixa de ícones do padrão gráfico, o logo O Chamado de Anhangá e as marcas dos realizadores" width="720" height="900" loading="lazy">
+      <img class="hs" src="mato-grosso-se-sente-06.webp" alt="Encerramento: vista aérea de lavouras ao amanhecer, com o texto Esse é o Mato Grosso que a gente sente orgulho de representar, e as marcas do Sistema Famato" width="720" height="900" loading="lazy">
+      <img class="hs" src="parabens-mato-grosso-01.webp" alt="Card Parabéns, Mato Grosso por seus 277 anos, 9 de maio: colagem de fotos com a cidade de Cuiabá, araras-azuis, mangas, algodão, uma canoa e áreas alagadas dentro do contorno do estado, e o logo da Fundação Uniselva na base" width="859" height="1073" loading="lazy">
+    </div>
+    <div class="cnt">
+      <span>Destaques</span>
+      <div class="car-nav-btns">
+        <button class="car-btn" type="button" id="d-prev" aria-label="Slide anterior">←</button>
+        <button class="car-btn" type="button" id="d-next" aria-label="Próximo slide">→</button>
+      </div>
+      <span id="count">1 / 5</span>
+    </div>
   </div>
 </div>
 
@@ -133,17 +231,28 @@ dialog.lb::backdrop{background:rgba(10,9,30,.75)}
     <figure class="item" data-t="sto" data-desc="Story para apresentar o programa Saúde no Campo, que leva visita domiciliar mensal, cuidado para toda a família, telessaúde 24 horas e educação em saúde a quem vive e trabalha no campo. A foto abre o layout e os quatro serviços aparecem em blocos para leitura rápida no celular." style="margin:0"><img class="shot" src="saude-no-campo-01.webp" alt="Story do programa Saúde no Campo: técnica de saúde rural medindo a pressão de um morador, com os quatro serviços do programa listados abaixo da foto" width="720" height="1280" loading="lazy"><figcaption class="cap">Saúde no Campo<span>Story, Famato Senar Sindicatos</span></figcaption></figure>
     <figure class="item" data-t="imp" data-desc="Conjunto de quatro placas de sinalização para impressão, em verde com textos e ícones em branco e a marca Famato Senar Sindicatos na base: Acesso restrito (permitido apenas funcionários), Jardinagem, Lixeira e Lixo infectante. Cada placa combina um ícone grande com um título em letras grandes." style="margin:0"><img class="shot" src="placas-sinalizadoras-01.webp" alt="Placa Acesso restrito, permitido apenas funcionários, com ícone de mão em sinal de pare, fundo verde e logo Famato Senar Sindicatos" width="900" height="615" loading="lazy"><figcaption class="cap">Placas sinalizadoras<span>Impressos, 4 placas, Famato Senar Sindicatos</span></figcaption><div class="more" hidden><img loading="lazy" src="placas-sinalizadoras-02.webp" alt="Placa Jardinagem, com ícone de lixeira com uma folha dentro de um círculo, fundo verde e logo Famato Senar Sindicatos" width="900" height="615"><img loading="lazy" src="placas-sinalizadoras-03.webp" alt="Placa Lixeira, com ícone de lixeira dentro de um círculo, fundo verde e logo Famato Senar Sindicatos" width="900" height="615"><img loading="lazy" src="placas-sinalizadoras-04.webp" alt="Placa Lixo infectante, com ícone de lixeira com símbolo de risco biológico, fundo verde e logo Famato Senar Sindicatos" width="900" height="615"></div></figure>
     <figure class="item" data-t="fed" data-desc="Carrossel de 8 slides que mostra como o agro aparece em produtos do dia a dia. A capa lança a provocação Isso aqui é agro... e, em seguida, cada slide compara a matéria-prima no campo com o produto que ela vira: leite em cosméticos, milho em medicamentos, madeira em papel, algodão em tecidos, soja na alimentação pet e coco em produtos para o cabelo. O último slide fecha com a mensagem de que o agro faz parte da rotina muito mais do que se imagina." style="margin:0"><img class="shot" src="isso-e-agro-e-isso-tambem-01.webp" alt="Capa do carrossel: colagem com algodão, milho, café e ordenha mecânica e o texto Isso aqui é agro, com as marcas Sistema Famato, Senar, IMEA, Agrihub e Sindicatos" width="720" height="900" loading="lazy"><figcaption class="cap">Isso é agro... e isso também<span>Carrossel, 8 slides, Sistema Famato</span></figcaption><div class="more" hidden><img loading="lazy" src="isso-e-agro-e-isso-tambem-02.webp" alt="Isso é agro: leite em um balde de metal. Isso também é: o leite também pode estar presente em cosméticos, com creme na palma da mão" width="720" height="900"><img loading="lazy" src="isso-e-agro-e-isso-tambem-03.webp" alt="Isso é agro: espiga de milho na lavoura. Isso também é: o milho pode estar presente na produção de medicamentos, com cartelas de comprimidos" width="720" height="900"><img loading="lazy" src="isso-e-agro-e-isso-tambem-04.webp" alt="Isso é agro: floresta de eucaliptos. Isso também é: a madeira dá origem ao papel que usamos, com uma mulher lendo uma folha" width="720" height="900"><img loading="lazy" src="isso-e-agro-e-isso-tambem-05.webp" alt="Isso é agro: plantação de algodão ao pôr do sol. Isso também é: o algodão vira tecidos do nosso dia a dia, com mantas de tricô" width="720" height="900"><img loading="lazy" src="isso-e-agro-e-isso-tambem-06.webp" alt="Isso é agro: mão segurando grãos de soja. Isso também é: a soja pode fazer parte da alimentação do seu pet, com um cachorro diante da tigela de ração" width="720" height="900"><img loading="lazy" src="isso-e-agro-e-isso-tambem-07.webp" alt="Isso é agro: cacho de cocos verdes. Isso também é: o coco está presente em produtos para o cabelo, com óleo sendo aplicado nos fios" width="720" height="900"><img loading="lazy" src="isso-e-agro-e-isso-tambem-08.webp" alt="Encerramento: o agro faz parte da sua rotina muito mais do que você imagina, com fotos de pincel de maquiagem, café da manhã em família e cachorro comendo ração, e as marcas do Sistema Famato" width="720" height="900"></div></figure>
-    <figure class="item" data-t="fed" data-desc="Carrossel de 6 slides que celebra o orgulho de ser de Mato Grosso. A capa diz que o estado tem um jeito que não se explica, se sente. Cada um dos quatro slides do meio traz uma frase curta sobre uma parte do campo: a mão de quem planta, a terra que produz, a coragem de quem empreende e a força de quem cria. O último slide fecha dizendo que esse é o Mato Grosso que a gente sente orgulho de representar." style="margin:0"><img class="shot" src="mato-grosso-se-sente-01.webp" alt="Capa do carrossel: vista aérea de campos e de uma lagoa em Mato Grosso, com o texto Mato Grosso tem um jeito que não se explica. Se sente..., e as marcas do Sistema Famato" width="720" height="900" loading="lazy"><figcaption class="cap">Mato Grosso se sente<span>Carrossel, 6 slides, Sistema Famato</span></figcaption><div class="more" hidden><img loading="lazy" src="mato-grosso-se-sente-02.webp" alt="Na mão de quem planta: mãos segurando uma espiga de milho contra a luz do sol" width="720" height="900"><img loading="lazy" src="mato-grosso-se-sente-03.webp" alt="Na terra que produz: vista aérea de uma colheitadeira em uma lavoura" width="720" height="900"><img loading="lazy" src="mato-grosso-se-sente-04.webp" alt="Na coragem de quem empreende: mulher organizando temperos e verduras em uma feira, com camiseta do Natural do Campo" width="720" height="900"><img loading="lazy" src="mato-grosso-se-sente-05.webp" alt="Na força de quem cria: vaqueiros a cavalo conduzindo o gado em uma área alagada" width="720" height="900"><img loading="lazy" src="mato-grosso-se-sente-06.webp" alt="Encerramento: vista aérea de lavouras ao amanhecer, com o texto Esse é o Mato Grosso que a gente sente orgulho de representar, e as marcas do Sistema Famato" width="720" height="900"></div></figure><figure class="item" data-t="sto" data-desc="Três modelos de story para a campanha #VemProAgro: um em verde-escuro, um em verde com padrão de trator, folhas e ondas, e um em amarelo-limão. Os três usam o mesmo quadro branco arredondado, pensado para receber foto ou texto, e a marca da campanha na parte de baixo." style="margin:0"><img class="shot" src="templates-vemproagro-01.webp" alt="Template de story #VemProAgro com fundo verde-escuro, quadro branco vazio e a marca da campanha na base" width="720" height="1280" loading="lazy"><figcaption class="cap">Templates #VemProAgro<span>Stories, 3 templates</span></figcaption><div class="more" hidden><img loading="lazy" src="templates-vemproagro-02.webp" alt="Template de story #VemProAgro com fundo verde com padrão de trator, folhas e ondas, quadro branco vazio e a marca da campanha na base" width="720" height="1280"><img loading="lazy" src="templates-vemproagro-03.webp" alt="Template de story #VemProAgro com fundo amarelo-limão, quadro branco vazio e a marca da campanha na base" width="720" height="1280"></div></figure><figure class="item" data-t="fed" data-desc="Carrossel de 12 slides que apresenta seis programas e iniciativas a partir de uma brincadeira com emojis. Cada um ocupa dois slides: primeiro, a comparação entre o emoji que existe e o emoji que a marca gostaria de ter (ônibus, dente, médica, cavalo, vaquinha e pipoca); depois, um slide com foto e texto explicando o programa: Mutirão Rural, Campo Sorridente, Saúde no Campo, Equoterapia, Pequenos do Agro e Cine Senar." style="margin:0"><img class="shot" src="o-emoji-que-queremos-01.webp" alt="Emoji que temos, um ônibus amarelo comum, ao lado do emoji que queremos, um ônibus verde com a identidade do Senar, e o logo Famato Senar Sindicatos" width="720" height="900" loading="lazy"><figcaption class="cap">O emoji que queremos<span>Carrossel, 12 slides, Famato Senar Sindicatos</span></figcaption><div class="more" hidden><img loading="lazy" src="o-emoji-que-queremos-02.webp" alt="Mutirão Rural: atendimento oftalmológico em uma tenda, com óculos sobre a mesa, e texto explicando que o programa leva serviços de saúde, lazer e cidadania a locais de difícil acesso em Mato Grosso" width="720" height="900"><img loading="lazy" src="o-emoji-que-queremos-03.webp" alt="Emoji que temos, um dente, ao lado do emoji que queremos, uma dentadura com uma escova de dentes verde" width="720" height="900"><img loading="lazy" src="o-emoji-que-queremos-04.webp" alt="Campo Sorridente: crianças escovando os dentes em uma estação educativa, com texto sobre prevenção e cuidados com a saúde bucal" width="720" height="900"><img loading="lazy" src="o-emoji-que-queremos-05.webp" alt="Emoji que temos, uma médica de jaleco, ao lado do emoji que queremos, uma médica com chapéu de palha" width="720" height="900"><img loading="lazy" src="o-emoji-que-queremos-06.webp" alt="Saúde no Campo: técnica de saúde medindo a pressão de uma moradora, com texto sobre a iniciativa do Senar MT" width="720" height="900"><img loading="lazy" src="o-emoji-que-queremos-07.webp" alt="Emoji que temos, um cavalo correndo, ao lado do emoji que queremos, uma criança de capacete montada em um cavalo" width="720" height="900"><img loading="lazy" src="o-emoji-que-queremos-08.webp" alt="Equoterapia: criança de capacete montada em um cavalo, amparada por profissionais, com texto sobre o apoio do Senar-MT a essa terapia" width="720" height="900"><img loading="lazy" src="o-emoji-que-queremos-09.webp" alt="Emoji que temos, o rosto de uma vaca, ao lado do emoji que queremos, uma vaquinha de chapéu e camisa verde" width="720" height="900"><img loading="lazy" src="o-emoji-que-queremos-10.webp" alt="Pequenos do Agro: mascotes do programa enfileirados em um palco, com texto sobre a experiência lúdica para crianças" width="720" height="900"><img loading="lazy" src="o-emoji-que-queremos-11.webp" alt="Emoji que temos, um balde de pipoca vermelho e branco, ao lado do emoji que queremos, um balde de pipoca com a marca Cine Senar" width="720" height="900"><img loading="lazy" src="o-emoji-que-queremos-12.webp" alt="Cine Senar: plateia assistindo a um filme em um telão, com texto sobre o cinema levado a cidades que não têm essa mídia" width="720" height="900"></div></figure><figure class="item" data-t="idv" data-desc="Carrossel de 3 slides com a identidade visual do perfil @anhanga.jogo, do jogo O Chamado de Anhangá, cujas hashtags citam mitologia indígena, mobile, Libras, biomas de Mato Grosso e acessibilidade. A capa anuncia o jogo com o aviso Em breve e as lojas Google Play e Steam; os outros dois slides apresentam a paleta de cores, com cinco cores primárias e duas secundárias, e o padrão gráfico, com ícones como arco e flecha, fogo, mão e folhas." style="margin:0"><img class="shot" src="o-chamado-de-anhanga-01.webp" alt="Capa do carrossel: logo O Chamado de Anhangá em uma placa de madeira, com o texto Em breve, hashtags sobre mitologia indígena, mobile, Libras, biomas de Mato Grosso e acessibilidade, ícones das lojas Google Play e Steam e as marcas dos realizadores" width="720" height="900" loading="lazy"><figcaption class="cap">O Chamado de Anhangá<span>Identidade visual do @anhanga.jogo, 3 slides</span></figcaption><div class="more" hidden><img loading="lazy" src="o-chamado-de-anhanga-02.webp" alt="Paleta de cores do projeto: cinco cores primárias (#f5f3ec, #8f270b, #ff982e, #567d22 e #7ec225) e duas secundárias (#fbbb02 e #501d06), com o logo Anhangá" width="720" height="900"><img loading="lazy" src="o-chamado-de-anhanga-03.webp" alt="Slide Pathern: padrão gráfico em blocos coloridos com ícones de folha, estrela, arco e flecha, mão e fogo, acima do logo O Chamado de Anhangá" width="720" height="900"></div></figure><figure class="item" data-t="fed" data-desc="Carrossel com 4 posts de feed do perfil @anhanga.jogo: o anúncio de que o jogo estará em breve na Steam, o modelo da série Milla Indica, com lugares para visitar em Mato Grosso, um template com a ilustração do jogo e um post sobre cursos de Libras gratuitos. Dois deles ainda trazem textos de exemplo (Inserir um título e Inserir um pouquinho de texto), por serem templates." style="margin:0"><img class="shot" src="posts-do-anhanga-jogo-01.webp" alt="Post Em breve disponível na Steam: celular mostrando a arte do jogo, com a menina, o cervo branco, a arara, a onça e a capivara, o logo O Chamado de Anhangá, o botão da Steam e as marcas dos realizadores" width="720" height="900" loading="lazy"><figcaption class="cap">Posts do @anhanga.jogo<span>Carrossel, 4 posts de feed</span></figcaption><div class="more" hidden><img loading="lazy" src="posts-do-anhanga-jogo-02.webp" alt="Template Milla Indica: Lugares para você visitar em Mato Grosso, com moldura em forma de selo postal sobre um fundo de águas cristalinas, o logo O Chamado de Anhangá e as marcas dos realizadores" width="720" height="900"><img loading="lazy" src="posts-do-anhanga-jogo-03.webp" alt="Template de post com a ilustração do jogo recortada em formato irregular sobre fundo amarelo, com o texto Inserir um título em dois cantos e as marcas dos realizadores" width="720" height="900"><img loading="lazy" src="posts-do-anhanga-jogo-04.webp" alt="Post Cursos de libras gratuitos que você precisa conhecer, com uma pasta de arquivo sobre fundo laranja, faixa de ícones do padrão gráfico, o logo O Chamado de Anhangá e as marcas dos realizadores" width="720" height="900"></div></figure><figure class="item" data-t="ban" data-layout="wide" data-desc="Três banners da campanha de valorização do comércio local em Cuiabá, cada um com uma cor e um estilo de lettering. Dois deles, em verde e em amarelo, trazem Valorize Cuiabá, valorize o nosso e a chamada Compre de quem faz parte da sua história, sobre fotos de produtos locais, como peixe e bananas; o terceiro, em laranja, diz Escolha o comércio da sua cidade e mostra um celular em primeiro plano." style="margin:0"><img class="shot" src="campanha-comercio-local-01.webp" alt="Banner verde e amarelo com o texto Valorize Cuiabá, valorize o nosso. Compre de quem faz parte da sua história, ao lado de uma mulher segurando um peixe embalado" width="1200" height="309" loading="lazy"><figcaption class="cap">Campanha comércio local<span>Banners, 3 peças, Valorize Cuiabá</span></figcaption><div class="more" hidden><img loading="lazy" src="campanha-comercio-local-02.webp" alt="Banner laranja com o texto Sem espera, sem erro, sem taxa surpresa. Escolha o comércio da sua cidade!, ao lado de uma mão segurando um celular" width="1200" height="310"><img loading="lazy" src="campanha-comercio-local-03.webp" alt="Banner amarelo com o texto Valorize Cuiabá, valorize o nosso. Compre de quem faz parte da sua história, ao lado de uma mulher escolhendo bananas" width="1200" height="310"></div></figure><figure class="item" data-t="fed" data-desc="Carrossel com 3 cards de divulgação de cursos de especialização lato sensu da UFMT, com apoio da Fundação Uniselva: Gestão e Ciência de Dados, Engenharia de Segurança do Trabalho (EAD) e Direito do Agronegócio. Os cards seguem o mesmo modelo: faixa azul com o prazo de inscrição no topo, foto de fundo com filtro de cor, título em destaque, quadro com os contatos, ícone do curso e as marcas de apoio e realização na base." style="margin:0"><img class="shot" src="cards-de-cursos-01.webp" alt="Card da especialização lato sensu em Gestão e Ciência de Dados, com inscrições até 30 de agosto de 2025, fundo azul com uma mão em um computador, contatos do Instituto de Computação da UFMT e marcas de apoio e realização" width="900" height="1124" loading="lazy"><figcaption class="cap">Cards de cursos<span>Carrossel, 3 cards, UFMT e Fundação Uniselva</span></figcaption><div class="more" hidden><img loading="lazy" src="cards-de-cursos-02.webp" alt="Card da especialização EAD lato sensu em Engenharia de Segurança do Trabalho, com inscrições até 20 de junho de 2025, fundo com capacete amarelo e plantas, contato da Faculdade de Engenharia da UFMT e marcas de apoio e realização" width="900" height="1125"><img loading="lazy" src="cards-de-cursos-03.webp" alt="Card da especialização lato sensu em Direito do Agronegócio, com inscrições até 21 de agosto de 2025, fundo verde com uma mulher usando um notebook, contatos da Faculdade de Direito da UFMT e marcas de apoio e realização" width="900" height="1124"></div></figure><figure class="item" data-t="idv" data-layout="wide" data-desc="Carrossel com a identidade visual do podcast 2 Concurseiros. O primeiro slide reúne as cores (#2a7476 e #fffdf2), a fonte Costa Rica, o logo com microfone em um balão de fala nas versões colorida e branca sobre degradê verde, e o padrão gráfico com o logo repetido. O segundo mostra a aplicação em uma capa de episódio, com o título O concurso da DPU vem aí! e o convidado Pedro Coelho." style="margin:0"><img class="shot" src="2-concurseiros-01.webp" alt="Prancha de identidade visual do podcast 2 Concurseiros: cores #2a7476 e #fffdf2, fonte Costa Rica, logo com microfone em um balão de fala nas versões colorida e branca sobre degradê verde, e padrão gráfico com o logo repetido" width="1300" height="735" loading="lazy"><figcaption class="cap">2 Concurseiros<span>Identidade visual de podcast, 2 slides</span></figcaption><div class="more" hidden><img loading="lazy" src="2-concurseiros-02.webp" alt="Capa de episódio do podcast 2 Concurseiros: homem de camisa branca e óculos sorrindo diante de um microfone, com o título O concurso da DPU vem aí! e o texto Com Pedro Coelho" width="1296" height="732"></div></figure><figure class="item" data-t="fed" data-desc="Card informativo para o feed sobre o Edital 18/2025, uma seleção pública de fornecedores presencial para a adequação e reforma do Biotério Central da UFMT, em Cuiabá. Em tons de azul e cinza, destaca o objeto, a data de abertura das propostas (14/10/2025, às 09h), o local e, em um quadro azul, o e-mail e o caminho no site para consultar o edital." style="margin:0"><img class="shot" src="edital-18-2025-01.webp" alt="Card do Edital 18/2025: seleção pública de fornecedores presencial, para adequação e reforma do Biotério Central da UFMT, com data e local de abertura das propostas e um quadro azul de mais informações com e-mail e endereço do edital" width="900" height="1125" loading="lazy"><figcaption class="cap">Edital 18/2025<span>Card de feed, seleção de fornecedores, Fundação Uniselva</span></figcaption></figure><figure class="item" data-t="fed" data-desc="Card de feed em homenagem aos 277 anos de Mato Grosso, comemorados em 9 de maio, para a Fundação Uniselva. Uma colagem de fotos (vista da cidade, araras-azuis, mangas, algodão, uma canoa e áreas alagadas) ocupa o topo, dentro do contorno do estado, e a mensagem Terra próspera que nutre pesquisas e avanços para a sociedade aparece sobre fundo claro, com uma onça em marca d&#x27;água." style="margin:0"><img class="shot" src="parabens-mato-grosso-01.webp" alt="Card Parabéns, Mato Grosso por seus 277 anos, 9 de maio: colagem de fotos com a cidade de Cuiabá, araras-azuis, mangas, algodão, uma canoa e áreas alagadas dentro do contorno do estado, e o logo da Fundação Uniselva na base" width="859" height="1073" loading="lazy"><figcaption class="cap">Parabéns, Mato Grosso<span>Card de feed, aniversário do estado, Fundação Uniselva</span></figcaption></figure>
-    <figure class="item" data-t="imp" data-desc="Mockup do panfleto do jogo O Chamado de Anhangá, com frente e verso. A frente traz um celular ilustrado com o botão Começar! e uma seta; o verso traz o logo, o aviso Em breve, as lojas Google Play e Steam, um QR code do perfil @anhanga.jogo e as marcas dos realizadores." style="margin:0"><img class="shot" src="panfleto-o-chamado-de-anhanga-01.webp" alt="Mockup do panfleto O Chamado de Anhangá, frente e verso sobre uma mesa: a frente tem um celular ilustrado com o botão Começar!, e o verso tem o logo, o aviso Em breve, as lojas Google Play e Steam, um QR code do @anhanga.jogo e as marcas dos realizadores" width="1200" height="750" loading="lazy"><figcaption class="cap">Panfleto O Chamado de Anhangá<span>Impresso, mockup frente e verso</span></figcaption></figure>
+    <figure class="item" data-t="fed" data-desc="Carrossel de 6 slides que celebra o orgulho de ser de Mato Grosso. A capa diz que o estado tem um jeito que não se explica, se sente. Cada um dos quatro slides do meio traz uma frase curta sobre uma parte do campo: a mão de quem planta, a terra que produz, a coragem de quem empreende e a força de quem cria. O último slide fecha dizendo que esse é o Mato Grosso que a gente sente orgulho de representar." style="margin:0"><img class="shot" src="mato-grosso-se-sente-01.webp" alt="Capa do carrossel: vista aérea de campos e de uma lagoa em Mato Grosso, com o texto Mato Grosso tem um jeito que não se explica. Se sente..., e as marcas do Sistema Famato" width="720" height="900" loading="lazy"><figcaption class="cap">Mato Grosso se sente<span>Carrossel, 6 slides, Sistema Famato</span></figcaption><div class="more" hidden><img loading="lazy" src="mato-grosso-se-sente-02.webp" alt="Na mão de quem planta: mãos segurando uma espiga de milho contra a luz do sol" width="720" height="900"><img loading="lazy" src="mato-grosso-se-sente-03.webp" alt="Na terra que produz: vista aérea de uma colheitadeira em uma lavoura" width="720" height="900"><img loading="lazy" src="mato-grosso-se-sente-04.webp" alt="Na coragem de quem empreende: mulher organizando temperos e verduras em uma feira, com camiseta do Natural do Campo" width="720" height="900"><img loading="lazy" src="mato-grosso-se-sente-05.webp" alt="Na força de quem cria: vaqueiros a cavalo conduzindo o gado em uma área alagada" width="720" height="900"><img loading="lazy" src="mato-grosso-se-sente-06.webp" alt="Encerramento: vista aérea de lavouras ao amanhecer, com o texto Esse é o Mato Grosso que a gente sente orgulho de representar, e as marcas do Sistema Famato" width="720" height="900"></div></figure>
+    <figure class="item" data-t="sto" data-desc="Três modelos de story para a campanha #VemProAgro: um em verde-escuro, um em verde com padrão de trator, folhas e ondas, e um em amarelo-limão. Os três usam o mesmo quadro branco arredondado, pensado para receber foto ou texto, e a marca da campanha na parte de baixo." style="margin:0"><img class="shot" src="templates-vemproagro-01.webp" alt="Template de story #VemProAgro com fundo verde-escuro, quadro branco vazio e a marca da campanha na base" width="720" height="1280" loading="lazy"><figcaption class="cap">Templates #VemProAgro<span>Stories, 3 templates</span></figcaption><div class="more" hidden><img loading="lazy" src="templates-vemproagro-02.webp" alt="Template de story #VemProAgro com fundo verde com padrão de trator, folhas e ondas, quadro branco vazio e a marca da campanha na base" width="720" height="1280"><img loading="lazy" src="templates-vemproagro-03.webp" alt="Template de story #VemProAgro com fundo amarelo-limão, quadro branco vazio e a marca da campanha na base" width="720" height="1280"></div></figure>
+    <figure class="item" data-t="fed" data-desc="Carrossel de 12 slides que apresenta seis programas e iniciativas a partir de uma brincadeira com emojis. Cada um ocupa dois slides: primeiro, a comparação entre o emoji que existe e o emoji que a marca gostaria de ter (ônibus, dente, médica, cavalo, vaquinha e pipoca); depois, um slide com foto e texto explicando o programa: Mutirão Rural, Campo Sorridente, Saúde no Campo, Equoterapia, Pequenos do Agro e Cine Senar." style="margin:0"><img class="shot" src="o-emoji-que-queremos-01.webp" alt="Emoji que temos, um ônibus amarelo comum, ao lado do emoji que queremos, um ônibus verde com a identidade do Senar, e o logo Famato Senar Sindicatos" width="720" height="900" loading="lazy"><figcaption class="cap">O emoji que queremos<span>Carrossel, 12 slides, Famato Senar Sindicatos</span></figcaption><div class="more" hidden><img loading="lazy" src="o-emoji-que-queremos-02.webp" alt="Mutirão Rural" width="720" height="900"><img loading="lazy" src="o-emoji-que-queremos-03.webp" alt="Campo Sorridente" width="720" height="900"><img loading="lazy" src="o-emoji-que-queremos-04.webp" alt="Saúde no Campo" width="720" height="900"><img loading="lazy" src="o-emoji-que-queremos-05.webp" alt="Equoterapia" width="720" height="900"><img loading="lazy" src="o-emoji-que-queremos-06.webp" alt="Pequenos do Agro" width="720" height="900"><img loading="lazy" src="o-emoji-que-queremos-07.webp" alt="Cine Senar" width="720" height="900"></div></figure>
+    <figure class="item" data-t="idv" data-desc="Carrossel de 3 slides com a identidade visual do perfil @anhanga.jogo, do jogo O Chamado de Anhangá, cujas hashtags citam mitologia indígena, mobile, Libras, biomas de Mato Grosso e acessibilidade. A capa anuncia o jogo com o aviso Em breve e as lojas Google Play e Steam; os outros dois slides apresentam a paleta de cores, com cinco cores primárias e duas secundárias, e o padrão gráfico, com ícones como arco e flecha, fogo, mão e folhas." style="margin:0"><img class="shot" src="o-chamado-de-anhanga-01.webp" alt="Capa do carrossel: logo O Chamado de Anhangá em uma placa de madeira" width="720" height="900" loading="lazy"><figcaption class="cap">O Chamado de Anhangá<span>Identidade visual do @anhanga.jogo, 3 slides</span></figcaption><div class="more" hidden><img loading="lazy" src="o-chamado-de-anhanga-02.webp" alt="Paleta de cores" width="720" height="900"><img loading="lazy" src="o-chamado-de-anhanga-03.webp" alt="Pattern" width="720" height="900"></div></figure>
+    <figure class="item" data-t="fed" data-desc="Carrossel com 4 posts de feed do perfil @anhanga.jogo: o anúncio de que o jogo estará em breve na Steam, o modelo da série Milla Indica, com lugares para visitar em Mato Grosso, um template com a ilustração do jogo e um post sobre cursos de Libras gratuitos." style="margin:0"><img class="shot" src="posts-do-anhanga-jogo-01.webp" alt="Post Em breve disponível na Steam" width="720" height="900" loading="lazy"><figcaption class="cap">Posts do @anhanga.jogo<span>Carrossel, 4 posts de feed</span></figcaption><div class="more" hidden><img loading="lazy" src="posts-do-anhanga-jogo-02.webp" alt="Template Milla Indica" width="720" height="900"><img loading="lazy" src="posts-do-anhanga-jogo-03.webp" alt="Template de post" width="720" height="900"><img loading="lazy" src="posts-do-anhanga-jogo-04.webp" alt="Post Cursos de libras gratuitos" width="720" height="900"></div></figure>
+    <figure class="item" data-t="ban" data-layout="wide" data-desc="Três banners da campanha de valorização do comércio local em Cuiabá, cada um com uma cor e um estilo de lettering. Dois deles, em verde e em amarelo, trazem Valorize Cuiabá, valorize o nosso e a chamada Compre de quem faz parte da sua história, sobre fotos de produtos locais, como peixe e bananas; o terceiro, em laranja, diz Escolha o comércio da sua cidade e mostra um celular em primeiro plano." style="margin:0"><img class="shot" src="campanha-comercio-local-01.webp" alt="Banner verde e amarelo" width="1200" height="309" loading="lazy"><figcaption class="cap">Campanha comércio local<span>Banners, 3 peças, Valorize Cuiabá</span></figcaption><div class="more" hidden><img loading="lazy" src="campanha-comercio-local-02.webp" alt="Banner laranja" width="1200" height="310"><img loading="lazy" src="campanha-comercio-local-03.webp" alt="Banner amarelo" width="1200" height="310"></div></figure>
+    <figure class="item" data-t="fed" data-desc="Carrossel com 3 cards de divulgação de cursos de especialização lato sensu da UFMT, com apoio da Fundação Uniselva: Gestão e Ciência de Dados, Engenharia de Segurança do Trabalho (EAD) e Direito do Agronegócio." style="margin:0"><img class="shot" src="cards-de-cursos-01.webp" alt="Card da especialização lato sensu em Gestão e Ciência de Dados" width="900" height="1124" loading="lazy"><figcaption class="cap">Cards de cursos<span>Carrossel, 3 cards, UFMT e Fundação Uniselva</span></figcaption><div class="more" hidden><img loading="lazy" src="cards-de-cursos-02.webp" alt="Card especialização EAD" width="900" height="1125"><img loading="lazy" src="cards-de-cursos-03.webp" alt="Card Direito do Agronegócio" width="900" height="1124"></div></figure>
+    <figure class="item" data-t="idv" data-layout="wide" data-desc="Carrossel com a identidade visual do podcast 2 Concurseiros. O primeiro slide reúne as cores, fonte, logo com microfone e padrão gráfico. O segundo mostra a aplicação em uma capa de episódio." style="margin:0"><img class="shot" src="2-concurseiros-01.webp" alt="Prancha de identidade visual do podcast 2 Concurseiros" width="1300" height="735" loading="lazy"><figcaption class="cap">2 Concurseiros<span>Identidade visual de podcast, 2 slides</span></figcaption><div class="more" hidden><img loading="lazy" src="2-concurseiros-02.webp" alt="Capa de episódio do podcast 2 Concurseiros" width="1296" height="732"></div></figure>
+    <figure class="item" data-t="fed" data-desc="Card informativo para o feed sobre o Edital 18/2025, uma seleção pública de fornecedores presencial para a adequação e reforma do Biotério Central da UFMT, em Cuiabá." style="margin:0"><img class="shot" src="edital-18-2025-01.webp" alt="Card do Edital 18/2025" width="900" height="1125" loading="lazy"><figcaption class="cap">Edital 18/2025<span>Card de feed, Fundação Uniselva</span></figcaption></figure>
+    <figure class="item" data-t="fed" data-desc="Card de feed em homenagem aos 277 anos de Mato Grosso, comemorados em 9 de maio, para a Fundação Uniselva." style="margin:0"><img class="shot" src="parabens-mato-grosso-01.webp" alt="Card Parabéns, Mato Grosso" width="859" height="1073" loading="lazy"><figcaption class="cap">Parabéns, Mato Grosso<span>Card de feed, Fundação Uniselva</span></figcaption></figure>
+    <figure class="item" data-t="imp" data-desc="Mockup do panfleto do jogo O Chamado de Anhangá, com frente e verso." style="margin:0"><img class="shot" src="panfleto-o-chamado-de-anhanga-01.webp" alt="Mockup do panfleto O Chamado de Anhangá" width="1200" height="750" loading="lazy"><figcaption class="cap">Panfleto O Chamado de Anhangá<span>Impresso, mockup frente e verso</span></figcaption></figure>
   </div>
 </section>
 
 <section id="sobre">
   <h2>Sobre</h2>
   <div class="about">
-    <img class="me" src="foto-sobre.webp" alt="Retrato de Wanessa sorrindo, com cabelo escuro ondulado e camisa preta, com a mão apoiada perto do queixo" width="640" height="640">
-    <div class="about-txt"><p>Oii, eu sou Wanessa, estudante de publicidade e propaganda pela UFMT e atuo há 4 anos na área do marketing e comunicação, passando por TV e Rádio, assessoria de comunicação e house de marketing. Espero que você goste do meu trabalho! ;)</p>
-    <ul class="skills"><li>Carrosséis</li><li>Stories</li><li>Identidade para redes</li><li>Impressos</li></ul></div>
+    <img class="me" src="foto-sobre.webp" alt="Retrato de Wanessa sorrindo" width="640" height="640">
+    <div class="about-txt">
+      <p>Oii, eu sou Wanessa, estudante de publicidade e propaganda pela UFMT e atuo há 4 anos na área do marketing e comunicação, passando por TV e Rádio, assessoria de comunicação e house de marketing. Espero que você goste do meu trabalho! ;)</p>
+      <ul class="skills"><li>Carrosséis</li><li>Stories</li><li>Identidade para redes</li><li>Impressos</li></ul>
+    </div>
   </div>
 </section>
 
@@ -151,98 +260,167 @@ dialog.lb::backdrop{background:rgba(10,9,30,.75)}
   <h2>Vamos conversar?</h2>
   <p style="color:var(--muted);margin:0 0 16px">Conte o que você precisa e eu respondo com prazo e valor.</p>
   <a class="mail" href="mailto:wanessafernanda7@gmail.com">wanessafernanda7@gmail.com</a>
-  <p class="btns" style="margin:20px 0 0"><a class="btn s" href="https://instagram.com/wanessa.fs" target="_blank" rel="noopener">Instagram</a><a class="btn s" href="https://www.linkedin.com/in/wanessa-melo-5ab949234" target="_blank" rel="noopener">LinkedIn</a></p>
+  <p class="btns" style="margin:24px 0 0">
+    <a class="btn s" href="https://instagram.com/wanessa.fs" target="_blank" rel="noopener">Instagram</a>
+    <a class="btn s" href="https://www.linkedin.com/in/wanessa-melo-5ab949234" target="_blank" rel="noopener">LinkedIn</a>
+  </p>
 </section>
 </main>
 
 <footer>© 2026 Wanessa FS</footer>
 
 <dialog class="lb" id="lb" aria-labelledby="lb-title">
-<div class="lb-bar"><button class="lb-x" type="button" id="lb-x">Fechar</button></div>
-<div class="lb-in"><div class="lb-media" id="lb-media"></div>
-<div class="lb-txt"><h3 id="lb-title"></h3><p class="lb-kind" id="lb-kind"></p><p class="lb-desc" id="lb-desc"></p></div></div>
+  <div class="lb-bar"><button class="lb-x" type="button" id="lb-x">Fechar</button></div>
+  <div class="lb-in">
+    <div class="lb-media" id="lb-media"></div>
+    <div class="lb-txt">
+      <h3 id="lb-title"></h3>
+      <p class="lb-kind" id="lb-kind"></p>
+      <p class="lb-desc" id="lb-desc"></p>
+    </div>
+  </div>
 </dialog>
 </div>
 
 <script>
-var track=document.getElementById('track'),count=document.getElementById('count');
-track.addEventListener('scroll',function(){
-  var s=track.children[0],w=s.offsetWidth+14;
-  count.textContent=(Math.min(Math.round(track.scrollLeft/w)+1,track.children.length))+' / '+track.children.length;
-});
-var btns=document.querySelectorAll('.filters button'),items=document.querySelectorAll('.item');
-btns.forEach(function(b){b.addEventListener('click',function(){
-  btns.forEach(function(x){x.setAttribute('aria-pressed',x===b)});
-  window.setGridFilter&&window.setGridFilter(b.dataset.f);
-})});
-</script>
-<script>
-(function(){
-var dlg=document.getElementById('lb');
-if(!dlg||!dlg.showModal)return;
-var media=document.getElementById('lb-media'),ttl=document.getElementById('lb-title'),kind=document.getElementById('lb-kind'),desc=document.getElementById('lb-desc');
-function buildCarousel(first,extra){
-  var imgs=[first].concat([].slice.call(extra));
-  var wrap=document.createElement('div');wrap.className='lb-car';
-  var tr=document.createElement('div');tr.className='lb-track';tr.tabIndex=0;
-  imgs.forEach(function(im){var c=im.cloneNode(true);['tabindex','role','aria-label','loading','hidden'].forEach(function(a){c.removeAttribute(a)});tr.appendChild(c)});
-  var nav=document.createElement('div');nav.className='lb-nav';
-  var prev=document.createElement('button');prev.type='button';prev.className='lb-x';prev.textContent='Anterior';
-  var next=document.createElement('button');next.type='button';next.className='lb-x';next.textContent='Próximo';
-  var cnt=document.createElement('span');cnt.textContent='1 / '+imgs.length;
-  function w(){return tr.firstChild.offsetWidth+12}
-  prev.addEventListener('click',function(){tr.scrollBy({left:-w(),behavior:'smooth'})});
-  next.addEventListener('click',function(){tr.scrollBy({left:w(),behavior:'smooth'})});
-  tr.addEventListener('scroll',function(){cnt.textContent=Math.min(Math.round(tr.scrollLeft/w())+1,imgs.length)+' / '+imgs.length});
-  nav.appendChild(prev);nav.appendChild(cnt);nav.appendChild(next);
-  wrap.appendChild(tr);wrap.appendChild(nav);media.appendChild(wrap);
+// Carrossel: mantém cálculo de passos e suporte a toque ou clique
+var track = document.getElementById('track'), count = document.getElementById('count');
+var prevBtn = document.getElementById('d-prev'), nextBtn = document.getElementById('d-next');
+
+function updateHeroCount(){
+  var s = track.children[0];
+  var gap = window.innerWidth >= 900 ? 16 : 14;
+  var w = s.offsetWidth + gap;
+  count.textContent = Math.min(Math.round(track.scrollLeft / w) + 1, track.children.length) + ' / ' + track.children.length;
 }
-function openItem(item){
-  var vis=item.querySelector('.shot,.art'),cap=item.querySelector('.cap');
-  var c=vis.cloneNode(true);
-  ['tabindex','role','aria-label','loading'].forEach(function(a){c.removeAttribute(a)});
-  media.innerHTML='';var extra=item.querySelectorAll('.more img');if(extra.length){buildCarousel(item.querySelector('.shot'),extra)}else{media.appendChild(c)}
-  ttl.textContent=cap.childNodes[0].textContent;
-  kind.textContent=cap.querySelector('span').textContent;
-  desc.textContent=item.dataset.desc||'';
-  dlg.classList.toggle('wide',item.dataset.layout==='wide');dlg.showModal();dlg.scrollTop=0;
-}
-document.querySelectorAll('.item').forEach(function(item){
-  var vis=item.querySelector('.shot,.art');
-  vis.setAttribute('tabindex','0');vis.setAttribute('role','button');
-  vis.setAttribute('aria-label','Ampliar: '+item.querySelector('.cap').childNodes[0].textContent);
-  vis.addEventListener('click',function(){openItem(item)});
-  vis.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openItem(item)}});
-});
-document.getElementById('lb-x').addEventListener('click',function(){dlg.close()});
-dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
-})();
-</script>
-<script>
-(function(){
-var grid=document.querySelector('.grid');
-if(!grid)return;
-var items=[].slice.call(grid.querySelectorAll('.item'));
-var filter='all',n=0;
-function want(){return window.innerWidth>=800?3:2}
-function place(){
-  var shown=items.filter(function(it){return filter==='all'||it.dataset.t===filter});
-  items.forEach(function(it){it.hidden=shown.indexOf(it)<0});
-  n=want();
-  while(grid.firstChild)grid.removeChild(grid.firstChild);
-  grid.classList.add('m');
-  var cols=[];
-  for(var i=0;i<n;i++){var c=document.createElement('div');c.className='col';grid.appendChild(c);cols.push(c)}
-  shown.forEach(function(it){
-    var best=cols[0];
-    cols.forEach(function(c){if(c.offsetHeight<best.offsetHeight)best=c});
-    best.appendChild(it);
+
+track.addEventListener('scroll', updateHeroCount);
+
+if(prevBtn && nextBtn){
+  prevBtn.addEventListener('click', function(){
+    var gap = window.innerWidth >= 900 ? 16 : 14;
+    track.scrollBy({ left: -(track.children[0].offsetWidth + gap), behavior: 'smooth' });
+  });
+  nextBtn.addEventListener('click', function(){
+    var gap = window.innerWidth >= 900 ? 16 : 14;
+    track.scrollBy({ left: (track.children[0].offsetWidth + gap), behavior: 'smooth' });
   });
 }
-window.setGridFilter=function(f){filter=f;place()};
-window.addEventListener('resize',function(){if(want()!==n)place()});
-place();
-if(document.fonts&&document.fonts.ready)document.fonts.ready.then(place);
+
+// Filtros
+var btns = document.querySelectorAll('.filters button');
+btns.forEach(function(b){
+  b.addEventListener('click', function(){
+    btns.forEach(function(x){ x.setAttribute('aria-pressed', x === b); });
+    window.setGridFilter && window.setGridFilter(b.dataset.f);
+  });
+});
+</script>
+
+<script>
+// Lightbox Modal
+(function(){
+  var dlg = document.getElementById('lb');
+  if(!dlg || !dlg.showModal) return;
+  var media = document.getElementById('lb-media'), ttl = document.getElementById('lb-title'), kind = document.getElementById('lb-kind'), desc = document.getElementById('lb-desc');
+
+  function buildCarousel(first, extra){
+    var imgs = [first].concat([].slice.call(extra));
+    var wrap = document.createElement('div'); wrap.className = 'lb-car';
+    var tr = document.createElement('div'); tr.className = 'lb-track'; tr.tabIndex = 0;
+    imgs.forEach(function(im){
+      var c = im.cloneNode(true);
+      ['tabindex','role','aria-label','loading','hidden'].forEach(function(a){ c.removeAttribute(a); });
+      tr.appendChild(c);
+    });
+    var nav = document.createElement('div'); nav.className = 'lb-nav';
+    var prev = document.createElement('button'); prev.type = 'button'; prev.className = 'lb-x'; prev.textContent = '← Anterior';
+    var next = document.createElement('button'); next.type = 'button'; next.className = 'lb-x'; next.textContent = 'Próximo →';
+    var cnt = document.createElement('span'); cnt.textContent = '1 / ' + imgs.length;
+    
+    function w(){ return tr.firstChild.offsetWidth + 12; }
+    prev.addEventListener('click', function(){ tr.scrollBy({ left: -w(), behavior: 'smooth' }); });
+    next.addEventListener('click', function(){ tr.scrollBy({ left: w(), behavior: 'smooth' }); });
+    tr.addEventListener('scroll', function(){
+      cnt.textContent = Math.min(Math.round(tr.scrollLeft / w()) + 1, imgs.length) + ' / ' + imgs.length;
+    });
+    
+    nav.appendChild(prev); nav.appendChild(cnt); nav.appendChild(next);
+    wrap.appendChild(tr); wrap.appendChild(nav); media.appendChild(wrap);
+  }
+
+  function openItem(item){
+    var vis = item.querySelector('.shot,.art'), cap = item.querySelector('.cap');
+    var c = vis.cloneNode(true);
+    ['tabindex','role','aria-label','loading'].forEach(function(a){ c.removeAttribute(a); });
+    media.innerHTML = '';
+    var extra = item.querySelectorAll('.more img');
+    if(extra.length){ buildCarousel(item.querySelector('.shot'), extra); }
+    else{ media.appendChild(c); }
+    
+    ttl.textContent = cap.childNodes[0].textContent;
+    kind.textContent = cap.querySelector('span').textContent;
+    desc.textContent = item.dataset.desc || '';
+    dlg.classList.toggle('wide', item.dataset.layout === 'wide');
+    dlg.showModal(); dlg.scrollTop = 0;
+  }
+
+  document.querySelectorAll('.item').forEach(function(item){
+    var vis = item.querySelector('.shot,.art');
+    vis.setAttribute('tabindex', '0'); vis.setAttribute('role', 'button');
+    vis.setAttribute('aria-label', 'Ampliar: ' + item.querySelector('.cap').childNodes[0].textContent);
+    vis.addEventListener('click', function(){ openItem(item); });
+    vis.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openItem(item); } });
+  });
+
+  document.getElementById('lb-x').addEventListener('click', function(){ dlg.close(); });
+  dlg.addEventListener('click', function(e){ if(e.target === dlg) dlg.close(); });
+})();
+</script>
+
+<script>
+// Masonry Grid Dinâmica: no mobile mantém 2 colunas como no original
+(function(){
+  var grid = document.querySelector('.grid');
+  if(!grid) return;
+  var items = [].slice.call(grid.querySelectorAll('.item'));
+  var filter = 'all', n = 0;
+
+  function want(){
+    var w = window.innerWidth;
+    if(w >= 1200) return 4;
+    if(w >= 800) return 3;
+    return 2; // comportamento original para telas menores
+  }
+
+  function place(){
+    var shown = items.filter(function(it){ return filter === 'all' || it.dataset.t === filter; });
+    items.forEach(function(it){ it.hidden = shown.indexOf(it) < 0; });
+    n = want();
+    while(grid.firstChild) grid.removeChild(grid.firstChild);
+    grid.classList.add('m');
+    var cols = [];
+    for(var i = 0; i < n; i++){
+      var c = document.createElement('div');
+      c.className = 'col';
+      grid.appendChild(c);
+      cols.push(c);
+    }
+    shown.forEach(function(it){
+      var best = cols[0];
+      cols.forEach(function(c){
+        if(c.offsetHeight < best.offsetHeight) best = c;
+      });
+      best.appendChild(it);
+    });
+  }
+
+  window.setGridFilter = function(f){ filter = f; place(); };
+  window.addEventListener('resize', function(){
+    if(want() !== n) place();
+  });
+  place();
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(place);
 })();
 </script>
 </body>
